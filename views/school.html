@@ -1,0 +1,7 @@
+﻿<p>school</p>
+<p>select</p>
+<select ng-model="address.state"
+        ng-options="state.lookupCode as state.description for state in lov_state"
+        ng-change="triggerChange(address.state)">
+</select>
+<tt>State selected: {{address.state}}</tt>
