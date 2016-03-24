@@ -3,8 +3,29 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+            name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        function pageLoad() {
+            // query string: ?foo=lorem&bar=&baz
+            var foo = getParameterByName('schoolID'); // "lorem"
+            var bar = getParameterByName('schoolName'); // "" (present with empty value)
+            var baz = getParameterByName('dataType'); // "" (present with no value)
+            var qux = getParameterByName('preference'); // null (absent)
+            document.getElementById("Details").innerHTML = "You sent " + foo + ", " + bar + ", " + baz + " and " + qux;
+        }
+    </script>
 </head>
-<body>
+<body onload="pageLoad();">
     <p>Widget</p>
+    <div id="Details"></div>
 </body>
 </html>

@@ -56,7 +56,7 @@ angular.module('UVX')
 	        };
 	        dataModel.savePeopleResponse(tcData);
 	        $timeout(function () {
-	            $window.location = "/embed/index.html?school=" + x;
+	            $window.location = "#/data";
 	        }, 2000);
 	        
 	        console.log(x);
@@ -64,16 +64,58 @@ angular.module('UVX')
 	}]);
 
 angular.module('UVX')
-	.controller('DataTypeController', ['$scope', function ($scope) {
+	.controller('DataTypeController', ['$scope', '$window', 'dataModel', '$timeout', function ($scope, $window, dataModel, $timeout) {
+	    var dtc=dataModel.getPeopleResponse();
+	    $scope.triggerChange = function (x) {
+	        var tcData = {
+	            'schoolID': dtc.schoolID,
+	            'schoolName': "" + dtc.schoolName,
+	            'dataType': x,
+	            'preference': 0
+	        };
+	        dataModel.savePeopleResponse(tcData);
+	        $timeout(function () {
+	            $window.location = "#/preference";
+	        }, 2000);
 
+	        console.log(x);
+	    };
 	}]);
 
 angular.module('UVX')
-	.controller('PreferenceController', ['$scope', function ($scope) {
-
+	.controller('PreferenceController', ['$scope', '$window', 'dataModel', '$timeout', function ($scope, $window, dataModel, $timeout) {
+	    var dtc = dataModel.getPeopleResponse();
+	    $scope.triggerChange = function (x) {
+	        var tcData = {
+	            'schoolID': dtc.schoolID,
+	            'schoolName': "" + dtc.schoolName,
+	            'dataType': dtc.dataType,
+	            'preference': x
+	        };
+	        dataModel.savePeopleResponse(tcData);
+	        $timeout(function () {
+	            $window.location = "#/code";
+	        }, 2000);
+	        console.log(x);
+	    };
 	}]);
 
 angular.module('UVX')
-	.controller('CodeController', ['$scope', function ($scope) {
+	.controller('CodeController', ['$scope', '$window', 'dataModel', '$timeout', function ($scope, $window, dataModel, $timeout) {
+	    var dtc = dataModel.getPeopleResponse();
+	    var tcData = {
+	        'schoolID': dtc.schoolID,
+	        'schoolName': "" + dtc.schoolName,
+	        'dataType': dtc.dataType,
+	        'preference': dtc.preference
+	    };
+	    $scope.source = "/embed/index.html?schoolId=" + tcData.schoolID + "&schoolName=" + tcData.schoolName + "&dataType=" + tcData.dataType + "&preference=" + tcData.preference;
 
+	    $scope.triggerChange = function () {	      
+	        dataModel.savePeopleResponse(tcData);
+	        $timeout(function () {
+	            $window.location = "/embed/index.html?schoolId=" + tcData.schoolID + "&schoolName=" + tcData.schoolName + "&dataType=" + tcData.dataType + "&preference=" + tcData.preference;
+	        }, 2000);
+	        //console.log(x);
+	    };
 	}]);
