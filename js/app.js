@@ -110,7 +110,7 @@ angular.module('UVX')
 	        'preference': dtc.preference
 	    };
 	    $scope.source = "/embed/index.html?schoolId=" + tcData.schoolID + "&schoolName=" + tcData.schoolName + "&dataType=" + tcData.dataType + "&preference=" + tcData.preference;
-
+	    $scope.code = "<iframe src='uvx.azurewebsites.net/embed/index.html?schoolId=" + tcData.schoolID + "&schoolName=" + tcData.schoolName + "&dataType=" + tcData.dataType + "&preference=" + tcData.preference+"' height='500' width='500'></iframe>";
 	    $scope.triggerChange = function () {	      
 	        dataModel.savePeopleResponse(tcData);
 	        $timeout(function () {
