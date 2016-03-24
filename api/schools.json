@@ -1,0 +1,26 @@
+﻿[
+  {
+    "schoolId": 1,
+    "schoolName": "Campbells Bay School",
+    "schoolLatitude": -36.8423152,
+    "schoolLongitude": 174.7648273
+  },
+  {
+    "schoolId": 2,
+    "schoolName": "Mount Albert Grammar School",
+    "schoolLatitude": -36.8849369,
+    "schoolLongitude": 174.7255004
+  },
+  {
+    "schoolId": 3,
+    "schoolName": "Hamilton Boys' High School",
+    "schoolLatitude": -37.7861025,
+    "schoolLongitude": 175.2961707
+  },
+  {
+    "schoolId": 4,
+    "schoolName": "Liston College",
+    "schoolLatitude": -36.8662336,
+    "schoolLongitude": 174.6207977
+  }
+]
